@@ -42,7 +42,7 @@ def feature_importance(dt, x, y, features):
     top = df.head(20) # get top 20 most important features
     print(top.to_string)
     # plot top 20
-    ax = plt.subplots()
+    fig, ax = plt.subplots()
     x = range(20)
     features = top.index
     importance = top['importance']
@@ -55,7 +55,7 @@ def feature_importance(dt, x, y, features):
     bot = df.tail(20)
     print(bot.to_string)
     # plot bottom 20
-    ax = plt.subplots()
+    fig, ax = plt.subplots()
     x = range(20)
     features = bot.index
     importance = bot['importance']
