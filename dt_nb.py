@@ -127,7 +127,7 @@ def tuning(x, y):
     f1 = []
     for l in leaf:
         print('leaf ', l)
-        dt = DecisionTreeClassifier(criterion='entropy', max_depth=50, min_samples_leaf=l)
+        dt = DecisionTreeClassifier(criterion='entropy', max_depth=25, min_samples_leaf=l)
         results = assessment(dt, x, y)
         acc.append(results['acc'])
         avg_pr.append(results['avg_pr'])
