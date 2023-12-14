@@ -101,14 +101,14 @@ def gridsearch(model, x, y, parameters, scoring):
 # hyperparameter tuning by parameter
 def tuning(x, y):
     # criterion
-    gini = DecisionTreeClassifier(criterion='gini', max_depth=50, min_samples_leaf=1)
-    entropy = DecisionTreeClassifier(criterion='entropy', max_depth=50, min_samples_leaf=1)
+    gini = DecisionTreeClassifier(criterion='gini', max_depth=100, min_samples_leaf=1)
+    entropy = DecisionTreeClassifier(criterion='entropy', max_depth=100, min_samples_leaf=1)
     print('gini')
     assessment(gini, x, y)
     print('entropy')
     assessment(entropy, x, y)
     # max depth
-    depth = [1, 5, 10, 20, 25, 30, 40, 50, 75]
+    depth = [1, 5, 10, 20, 25, 30, 40, 50, 75, 100]
     acc = []
     avg_pr = []
     f1 = []
