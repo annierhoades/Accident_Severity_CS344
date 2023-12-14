@@ -30,14 +30,41 @@ def main():
     assessment(gaus, x, y)
     metric_report(gaus, x, y)
 
-# print feature importance for decision tree
+# print and plot feature importance for decision tree
 def feature_importance(dt, x, y, features):
     x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=10)
     dt.fit(x_train, y_train)
     # use dataframe to store importances
     df = pd.DataFrame(data={'importance': dt.feature_importances_}, index=features)
-    df.sort_values(by='importance', axis=1, ascending=False) # sort importance in descending order
-    print(df.head(20).to_string) # print top 20 most important features
+    df = df.sort_values(by='importance', ascending=False) # sort importance in descending order
+    
+    # top 20
+    top = df.head(20) # get top 20 most important features
+    print(top.to_string)
+    # plot top 20
+    ax = plt.subplots()
+    x = range(20)
+    features = top.index
+    importance = top['importance']
+    ax.barh(x, importance, tick_label=features)
+    ax.invert_yaxis()
+    ax.set_xlabel('importance')
+    plt.show()
+
+    # bottom 20
+    bot = df.tail(20)
+    print(bot.to_string)
+    # plot bottom 20
+    ax = plt.subplots()
+    x = range(20)
+    features = bot.index
+    importance = bot['importance']
+    ax.barh(x, importance, tick_label=features)
+    ax.invert_yaxis()
+    ax.set_xlabel('importance')
+    plt.show()
+
+
 
 # print classification report on 80-20 split
 def metric_report(model, x, y):
